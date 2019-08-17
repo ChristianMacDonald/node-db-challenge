@@ -7,7 +7,8 @@ exports.seed = function(knex) {
       return knex('resources').insert([
         { name: 'Newegg', description: 'An online marketplace for computer parts.' },
         { name: 'Lambda School', description: 'An alternative school for computer science.' },
-        { name: 'BBC', description: 'A public British broadcasting network.' }
+        { name: 'BBC', description: 'A public British broadcasting network.' },
+        { name: 'Google', description: 'A search engine useful for just about anything.' }
       ]);
     });
 };
