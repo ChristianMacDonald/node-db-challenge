@@ -11,7 +11,7 @@ exports.up = function(knex) {
         table.string('description');
     }).createTable('project_resources', table => {
         table.integer('project_id').unsigned().notNullable().references('id').inTable('projects').onUpdate('CASCADE').onDelete('CASCADE');
-        table.integer('resource_id').unsigned().notNullable().references('id').inTable('projects').onUpdate('CASCADE').onDelete('CASCADE');
+        table.integer('resource_id').unsigned().notNullable().references('id').inTable('resources').onUpdate('CASCADE').onDelete('CASCADE');
         table.primary(['project_id', 'resource_id']);
     }).createTable('tasks', table => {
         table.increments();
