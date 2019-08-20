@@ -20,6 +20,13 @@ router.post('/', validateProject, async (req, res) => {
 router.get('/', async (req, res) => {
     try {
         let projects = await projectModel.get();
+        projects.forEach(project => {
+            if (project.completed) {
+                project.completed = true;
+            } else {
+                project.completed = false;
+            }
+        });
         res.status(200).json(projects);
     } catch (err) {
         res.status(500).json({ error: 'The projects information could not be retrieved.' });
@@ -27,6 +34,11 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/:id', validateProjectId, (req, res) => {
+    if (req.project.completed) {
+        req.project.completed = true;
+    } else {
+        req.project.completed = false;
+    }
     res.status(200).json(req.project);
 });
 

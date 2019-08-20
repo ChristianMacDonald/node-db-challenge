@@ -20,6 +20,13 @@ router.post('/', validateTask, async (req, res) => {
 router.get('/', async (req, res) => {
     try {
         let tasks = await taskModel.get();
+        tasks.forEach(task => {
+            if (task.completed) {
+                task.completed = true;
+            } else {
+                task.completed = false;
+            }
+        });
         res.status(200).json(tasks);
     } catch (err) {
         res.status(500).json({ error: 'The tasks information could not be retrieved.' });
@@ -27,6 +34,11 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/:id', validateTaskId, (req, res) => {
+    if (req.task.completed) {
+        req.task.completed = true;
+    } else {
+        req.task.completed = false;
+    }
     res.status(200).json(req.task);
 });
 
